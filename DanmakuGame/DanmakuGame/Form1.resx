@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox_Teki1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>293, 78</value>
+    <value>300, 70</value>
   </data>
   <data name="pictureBox_Teki1.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 72</value>
@@ -148,7 +148,7 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox_Jiki.Location" type="System.Drawing.Point, System.Drawing">
-    <value>293, 545</value>
+    <value>315, 570</value>
   </data>
   <data name="pictureBox_Jiki.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 70</value>
