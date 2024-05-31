@@ -43,7 +43,7 @@ namespace DanmakuGame
         }
         private void FormDanbaku_KeyDown(object sender, KeyEventArgs e)
         {
-
+            new Form().Show();
         }
     }
 }
