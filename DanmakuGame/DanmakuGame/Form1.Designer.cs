@@ -1,7 +1,7 @@
 ﻿
 namespace DanmakuGame
 {
-    partial class Form1
+    partial class FormDanmaku
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -29,13 +29,57 @@ namespace DanmakuGame
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDanmaku));
+            this.pictureBox_Teki1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Jiki = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Teki1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Jiki)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pictureBox_Teki1
+            // 
+            this.pictureBox_Teki1.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.pictureBox_Teki1, "pictureBox_Teki1");
+            this.pictureBox_Teki1.Name = "pictureBox_Teki1";
+            this.pictureBox_Teki1.TabStop = false;
+            // 
+            // pictureBox_Jiki
+            // 
+            this.pictureBox_Jiki.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.pictureBox_Jiki, "pictureBox_Jiki");
+            this.pictureBox_Jiki.Name = "pictureBox_Jiki";
+            this.pictureBox_Jiki.TabStop = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.BackColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Name = "label1";
+            // 
+            // FormDanmaku
+            // 
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox_Jiki);
+            this.Controls.Add(this.pictureBox_Teki1);
+            this.Cursor = System.Windows.Forms.Cursors.AppStarting;
+            this.Name = "FormDanmaku";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Teki1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Jiki)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.PictureBox pictureBox_Teki1;
+        private System.Windows.Forms.PictureBox pictureBox_Jiki;
+        private System.Windows.Forms.Label label1;
     }
 }
 

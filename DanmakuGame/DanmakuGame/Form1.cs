@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DanmakuGame
 {
-    public partial class Form1 : Form
+    public partial class FormDanmaku : Form
     {
-        public Form1()
+        public FormDanmaku()
         {
             InitializeComponent();
         }
