@@ -50,7 +50,6 @@ namespace DanmakuGame
             resources.ApplyResources(this.pictureBox_Teki1, "pictureBox_Teki1");
             this.pictureBox_Teki1.Name = "pictureBox_Teki1";
             this.pictureBox_Teki1.TabStop = false;
-            //this.pictureBox_Teki1.Click += new System.EventHandler(this.pictureBox_Teki1_Click);
             // 
             // label1
             // 
@@ -86,6 +85,7 @@ namespace DanmakuGame
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.AppStarting;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormDanmaku";
             this.Load += new System.EventHandler(this.FormDanmaku_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormDanmaku_KeyDown);

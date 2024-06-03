@@ -16,7 +16,7 @@ namespace DanmakuGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDanmaku());
+            Application.Run(new FormStart());
         }
     }
 }
