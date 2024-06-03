@@ -43,7 +43,7 @@ namespace DanmakuGame
             }
             else if (e.KeyCode == Keys.Space)
             {
-                Bulletlaunch(); 
+                Bulletlaunch();
             }
             else if (e.KeyCode == Keys.S)
             {
@@ -65,7 +65,7 @@ namespace DanmakuGame
 
         private void FormDanmaku_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left)
             {
                 direct = Direct.None;
             }
@@ -81,12 +81,41 @@ namespace DanmakuGame
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            pictureBoxJikMove();
+            pictureBoxJikiMove();
             BulletsMove();
+
+            countTimerTick++;
+
+            //SpaceshipMove();
+            //StandingByEnemysMove();
+            //BeginAttack();
+            //AttackEnemiesMove();
+            EnemyManager.EnemyBulletsMove();
         }
-        void pictureBoxJikMove()
+
+        //private void AttackEnemiesMove()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void BeginAttack()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void StandingByEnemysMove()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void SpaceshipMove()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        void pictureBoxJikiMove()
         {
-            if(direct == Direct.Left)
+            if (direct == Direct.Left)
             {
                 MoveLeft();
             }
@@ -122,8 +151,9 @@ namespace DanmakuGame
         List<PictureBox> _bullets = new List<PictureBox>(); //なんだこの<>は
         List<PictureBox> Bullets
         {
-            get{
-               _bullets = _bullets.Where(x => !x.IsDisposed).ToList();
+            get
+            {
+                _bullets = _bullets.Where(x => !x.IsDisposed).ToList();
                 return _bullets;
             }
         }
@@ -140,5 +170,74 @@ namespace DanmakuGame
                     bullet.Dispose();
             }
         }
+
+        int BULLET_SPEED_A = 9;
+        int BULLET_SPEED_B = 8;
+        int BULLET_SPEED_C = 7;
+        private int countTimerTick;
+
+        void EnemyBulletLaunch(Enemy enemy)
+        {
+            int bulletSpeed = BULLET_SPEED_C;
+            if (enemy.ID < 100)
+                bulletSpeed = BULLET_SPEED_A;
+            else if (enemy.ID < 200)
+                bulletSpeed = BULLET_SPEED_B;
+
+            EnemyBullet bullet = EnemyBullet.CreateBullet(enemy, bulletSpeed);
+            EnemyManager.EnemyBullets.Add(bullet);
+        }
+
+        public class EnemyBullet : PictureBox
+        {
+            public int speed = 0;
+
+            static int ENEMY_BULLET_WIDTH = 2;
+            static int ENEMY_BULLET_HEIGHT = 8;
+
+            public static EnemyBullet CreateBullet(Enemy enemy, int speed)
+            {
+                int center = (enemy.Left + enemy.Right) / 2;
+                EnemyBullet bullet = new EnemyBullet();
+                bullet.Location = new Point(center, enemy.Bottom);
+                bullet.Size = new Size(ENEMY_BULLET_WIDTH, ENEMY_BULLET_HEIGHT);
+                bullet.BackColor = Color.Red;
+                bullet.Parent = enemy.Parent;
+                bullet.speed = speed;
+                return bullet;
+            }
+        }
+
+        public class EnemyManager
+        {
+            static List<EnemyBullet> _enemyBullets = new List<EnemyBullet>();
+            static public List<EnemyBullet> EnemyBullets
+            {
+                get
+                {
+                    _enemyBullets = _enemyBullets.Where(x => !x.IsDisposed).ToList();
+                    return _enemyBullets;
+                }
+            }
+
+            static public void EnemyBulletsMove()
+            {
+                foreach (EnemyBullet bullet in EnemyBullets)
+                {
+                    Point pt = bullet.Location;
+                    pt.Y += bullet.speed;
+                    bullet.Location = pt;
+
+                    if (pt.Y > bullet.Parent.Height)
+                        bullet.Dispose();
+                }
+            }
+
+            private void pictureBox_Teki1_Click(object sender, EventArgs e)
+            {
+
+            }
+        }
     }
 }
+

@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace DanmakuGame
 {
     partial class FormDanmaku
@@ -48,6 +50,7 @@ namespace DanmakuGame
             resources.ApplyResources(this.pictureBox_Teki1, "pictureBox_Teki1");
             this.pictureBox_Teki1.Name = "pictureBox_Teki1";
             this.pictureBox_Teki1.TabStop = false;
+            //this.pictureBox_Teki1.Click += new System.EventHandler(this.pictureBox_Teki1_Click);
             // 
             // label1
             // 
@@ -95,6 +98,11 @@ namespace DanmakuGame
 
         }
 
+        //private void pictureBox_Teki1_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox_Teki1;
@@ -103,6 +111,7 @@ namespace DanmakuGame
         private System.Windows.Forms.PictureBox pictureBoxJiki;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel1;
+        private EventHandler pictureBox_Teki1_Click;
     }
 }
 
