@@ -29,12 +29,10 @@ namespace DanmakuGame
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDanmaku));
             this.pictureBox_Jiki = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox_Teki1 = new System.Windows.Forms.PictureBox();
-            this.timer_Tama = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Jiki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Teki1)).BeginInit();
             this.SuspendLayout();
@@ -60,10 +58,6 @@ namespace DanmakuGame
             this.pictureBox_Teki1.Name = "pictureBox_Teki1";
             this.pictureBox_Teki1.TabStop = false;
             // 
-            // timer_Tama
-            // 
-            this.timer_Tama.Tick += new System.EventHandler(this.timerTama_Tick);
-            // 
             // FormDanmaku
             // 
             resources.ApplyResources(this, "$this");
@@ -86,7 +80,6 @@ namespace DanmakuGame
         private System.Windows.Forms.PictureBox pictureBox_Jiki;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox_Teki1;
-        private System.Windows.Forms.Timer timer_Tama;
     }
 }
 
