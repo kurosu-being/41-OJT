@@ -36,11 +36,9 @@ namespace DanmakuGame
             this.pictureBox_Teki1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.pictureBoxJiki = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Teki1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJiki)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +48,15 @@ namespace DanmakuGame
             resources.ApplyResources(this.pictureBox_Teki1, "pictureBox_Teki1");
             this.pictureBox_Teki1.Name = "pictureBox_Teki1";
             this.pictureBox_Teki1.TabStop = false;
+            this.pictureBoxJiki = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJiki)).BeginInit();
+            // 
+            // pictureBoxJiki
+            // 
+            this.pictureBoxJiki.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.pictureBoxJiki, "pictureBoxJiki");
+            this.pictureBoxJiki.Name = "pictureBoxJiki";
+            this.pictureBoxJiki.TabStop = false;
             // 
             // label1
             // 
@@ -61,9 +68,6 @@ namespace DanmakuGame
             // pictureBoxJiki
             // 
             this.pictureBoxJiki.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.pictureBoxJiki, "pictureBoxJiki");
-            this.pictureBoxJiki.Name = "pictureBoxJiki";
-            this.pictureBoxJiki.TabStop = false;
             // 
             // timer1
             // 
@@ -72,11 +76,16 @@ namespace DanmakuGame
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Controls.Add(this.pictureBoxJiki);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox_Teki1);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            // pictureBox_Teki1
+            // 
+            this.pictureBox_Teki1.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.pictureBox_Teki1, "pictureBox_Teki1");
+            this.pictureBox_Teki1.Name = "pictureBox_Teki1";
+            this.pictureBox_Teki1.TabStop = false;
             // 
             // FormDanmaku
             // 
@@ -112,6 +121,7 @@ namespace DanmakuGame
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel1;
         private EventHandler pictureBox_Teki1_Click;
+
     }
 }
 
