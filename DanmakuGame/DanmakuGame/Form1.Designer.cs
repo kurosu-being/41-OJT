@@ -120,7 +120,7 @@ namespace DanmakuGame
         private System.Windows.Forms.PictureBox pictureBoxJiki;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel1;
-        private EventHandler pictureBox_Teki1_Click;
+        //private EventHandler pictureBox_Teki1_Click;
 
     }
 }

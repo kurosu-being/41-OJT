@@ -18,10 +18,12 @@ namespace DanmakuGame
 
             Point currentPoint = new Point(0, 0);
 
+            //このまま
             this.DoubleBuffered = true;
             this.Size = new Size(800, 600);
             this.BackColor = Color.Black;
 
+            //それぞれのクラスへ
             pictureBoxJiki = new PictureBox();
             pictureBoxJiki.Size = new Size(50, 50);
             pictureBoxJiki.BackColor = Color.White;
@@ -34,6 +36,7 @@ namespace DanmakuGame
             pictureBox_Teki1.Location = new Point(this.ClientSize.Width / 2 - 50, currentPoint.Y + 30);
             this.Controls.Add(pictureBox_Teki1);
 
+            //それぞれのクラスへ、一回試してみる
             playerBullets = new List<PictureBox>();
             enemyBullets = new List<EnemyBullet>();
 
@@ -42,7 +45,7 @@ namespace DanmakuGame
 
             gameTimer = new Timer();
             gameTimer.Tick += Gametimer_Tick;
-            gameTimer.Interval = 10;
+            gameTimer.Interval = 20;
             gameTimer.Start();
 
             timer1 = new Timer();
@@ -149,75 +152,14 @@ namespace DanmakuGame
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //pictureBoxJikiMove();
-            //BulletsMove();
-
-            //countTimerTick++;
-
-            ////SpaceshipMove();
-            ////StandingByEnemysMove();
-            ////BeginAttack();
-            ////AttackEnemiesMove();
-
-            //countTimerTick++;
-            //if (countTimerTick % 50 == 0)
-            //{
-            //    LaunchEnemyBullet();
-            //}
-            //EnemyManager.EnemyBulletsMove();
+            
         }
-
-        //private void AttackEnemiesMove()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void BeginAttack()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void StandingByEnemysMove()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void SpaceshipMove()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        void pictureBoxJikiMove()
-        {
-            if (direct == Direct.Left)
-            {
-                MoveLeft();
-            }
-            else if (direct == Direct.Right)
-            {
-                MoveRight();
-            }
-        }
-
-        private void MoveRight()
-        {
-            Point pt = pictureBoxJiki.Location;
-            pt.X += 10; //pt=X+10
-            pictureBoxJiki.Location = pt;
-        }
-
-        private void MoveLeft()
-        {
-            Point pt = pictureBoxJiki.Location;
-            pt.X -= 10;
-            pictureBoxJiki.Location = pt;
-        }
-
 
         private void FormDanmaku_Load(object sender, EventArgs e)
         {
 
         }
+
         void Bulletlaunch()
         {
             Point pt = pictureBoxJiki.Location;
@@ -246,19 +188,20 @@ namespace DanmakuGame
                 return _bullets;
             }
         }
-        void BulletsMove()
-        {
-            foreach (var bullet in Bullets)
-            {
-                Point pt = bullet.Location;
-                pt.Y -= 10;
-                bullet.Location = pt;
-                int BULLET_HEIGHT = 200; //自分で足してみた 謎の機能
 
-                if (bullet.Location.Y < -BULLET_HEIGHT)
-                    bullet.Dispose();
-            }
-        }
+        //void BulletsMove()
+        //{
+        //    foreach (var bullet in Bullets)
+        //    {
+        //        Point pt = bullet.Location;
+        //        pt.Y -= 10;
+        //        bullet.Location = pt;
+        //        int BULLET_HEIGHT = 200; //自分で足してみた 謎の機能
+
+        //        if (bullet.Location.Y < -BULLET_HEIGHT)
+        //            bullet.Dispose();
+        //    }
+        //}
 
 
 
@@ -271,25 +214,8 @@ namespace DanmakuGame
         private const int playerSpeed = 10;
         private const int BulletSpeed = 10;
         private const int BulletSpeed2 = 15;
-        int BULLET_SPEED_A = 9;
-        int BULLET_SPEED_B = 8;
-        int BULLET_SPEED_C = 7;
-
-        //public void EnemyBulletLaunch(Enemy enemy)
-        //{
-        //    int bulletSpeed = BULLET_SPEED_C;
-        //    if (enemy.ID < 100)
-        //        bulletSpeed = BULLET_SPEED_A;
-        //    else if (enemy.ID < 200)
-        //        bulletSpeed = BULLET_SPEED_B;
-
-        //    EnemyBullet bullet = EnemyBullet.CreateBullet(enemy, bulletSpeed);
-        //    EnemyManager.EnemyBullets.Add(bullet);
-        //    bullet.BringToFront(); // 弾を前面に移動
-        //}
-
-
-
+        
+        //敵クラスに動かす
         public class EnemyBullet : PictureBox
         {
             public int speed = 0;
@@ -309,18 +235,9 @@ namespace DanmakuGame
                 return bullet;
             }
         }
+
         private void MoveBullets()
         {
-            //foreach (var bullet in Bullets)
-            //{
-            //    Point pt = bullet.Location;
-            //    pt.Y -= 10;
-            //    bullet.Location = pt;
-            //    int BULLET_HEIGHT = 200;
-
-            //    if (bullet.Location.Y < -BULLET_HEIGHT)
-            //        bullet.Dispose();
-            //}
             for (int i = playerBullets.Count - 1; i >= 0; i--)
             {
                 playerBullets[i].Top -= BulletSpeed;
@@ -332,6 +249,7 @@ namespace DanmakuGame
             }
         }
 
+        //敵クラスに移動する
         private void CheckBulletCollishion()
         {
             for (int i = playerBullets.Count - 1; i >= 0; i--)
@@ -353,6 +271,7 @@ namespace DanmakuGame
             }
         }
 
+        //敵クラスに移動する
         private void LaunchEnemyBullet()
         {
             int centerX = pictureBox_Teki1.Left + pictureBox_Teki1.Width / 2;
@@ -370,15 +289,7 @@ namespace DanmakuGame
         }
         private void MovepictureBoxJiki()
         {
-            //if (direct == Direct.Left)
-            //{
-            //    MoveLeft();
-            //}
-            //else if (direct == Direct.Right)
-            //{
-            //    MoveRight();
-            //}
-
+            
             if (isMovingLeft && pictureBoxJiki.Left > 0)
             {
                 pictureBoxJiki.Left -= playerSpeed;
@@ -389,7 +300,7 @@ namespace DanmakuGame
             }
         }
 
-
+        //敵クラスに移動する
         public class EnemyManager
         {
 
