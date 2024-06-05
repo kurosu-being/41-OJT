@@ -22,8 +22,6 @@ namespace DanmakuGame
         private readonly EventHandler gameTimer_Tick;
 
         Rectangle[,] trimRects = new Rectangle[4, 3];
-        int width, height, interval = 10, time_move, endOftime = 0;
-        //Vector2 position = new(200, 125), speed = new(0, 0);
 
         public TekiTama()
         {
