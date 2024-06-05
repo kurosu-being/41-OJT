@@ -16,6 +16,8 @@ namespace DanmakuGame
         {
             //IializeComponent();
 
+            Point currentPoint = new Point(0, 0);
+
             this.DoubleBuffered = true;
             this.Size = new Size(800, 600);
             this.BackColor = Color.Black;
@@ -27,9 +29,9 @@ namespace DanmakuGame
             this.Controls.Add(pictureBoxJiki);
 
             pictureBox_Teki1 = new PictureBox();
-            pictureBox_Teki1.Size = new Size(50, 70);
+            pictureBox_Teki1.Size = new Size(70, 50);
             pictureBox_Teki1.BackColor = Color.White;
-            pictureBox_Teki1.Location = new Point(this.ClientSize.Width / 2 - 50);
+            pictureBox_Teki1.Location = new Point(this.ClientSize.Width / 2 - 50, currentPoint.Y + 30);
             this.Controls.Add(pictureBox_Teki1);
 
             playerBullets = new List<PictureBox>();
@@ -40,7 +42,7 @@ namespace DanmakuGame
 
             gameTimer = new Timer();
             gameTimer.Tick += Gametimer_Tick;
-            gameTimer.Interval = 30;
+            gameTimer.Interval = 10;
             gameTimer.Start();
 
             timer1 = new Timer();
