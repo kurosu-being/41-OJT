@@ -2,8 +2,11 @@
 
 namespace DanmakuGame
 {
-    public class Enemy
+    public class Enemy : Form
     {
+
+
+
         public int ID { get; internal set; }
         public int Left { get; internal set; }
         public int Bottom { get; internal set; }

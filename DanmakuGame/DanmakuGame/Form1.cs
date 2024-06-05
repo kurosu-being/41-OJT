@@ -99,22 +99,7 @@ namespace DanmakuGame
                 ShootBullet();
             }
 
-            if (e.KeyCode == Keys.Left)
-            {
-                direct = Direct.Left;
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                direct = Direct.Right;
-            }
-            else if (e.KeyCode == Keys.Space)
-            {
-                Bulletlaunch();
-            }
-            else if (e.KeyCode == Keys.S)
-            {
-                GameStart();
-            }
+            
         }
 
         private void ShootBullet()
@@ -160,24 +145,24 @@ namespace DanmakuGame
 
         }
 
-        void Bulletlaunch()
-        {
-            Point pt = pictureBoxJiki.Location;
-            int width = pictureBoxJiki.Size.Width;
-            int centerX = pt.X + width / 2; // 上部中心の半分ってこと
+        //void Bulletlaunch()
+        //{
+        //    Point pt = pictureBoxJiki.Location;
+        //    int width = pictureBoxJiki.Size.Width;
+        //    int centerX = pt.X + width / 2; // 上部中心の半分ってこと
 
-            int BULLET_WIDTH = 2;
-            int BULLET_HEIGHT = 10; //フィールド変数
+        //    int BULLET_WIDTH = 2;
+        //    int BULLET_HEIGHT = 10; //フィールド変数
 
-            Point point = new Point(centerX - BULLET_WIDTH / 2, pt.Y);
-            PictureBox bullet = new PictureBox();
-            bullet.Location = point;
-            bullet.Size = new Size(BULLET_WIDTH, BULLET_HEIGHT);
-            bullet.BackColor = Color.White;
-            bullet.Parent = panel1;
+        //    Point point = new Point(centerX - BULLET_WIDTH / 2, pt.Y);
+        //    PictureBox bullet = new PictureBox();
+        //    bullet.Location = point;
+        //    bullet.Size = new Size(BULLET_WIDTH, BULLET_HEIGHT);
+        //    bullet.BackColor = Color.White;
+        //    bullet.Parent = panel1;
 
-            Bullets.Add(bullet);
-        }
+        //    Bullets.Add(bullet);
+        //}
 
         List<PictureBox> _bullets = new List<PictureBox>(); //なんだこの<>は
         List<PictureBox> Bullets
@@ -188,21 +173,6 @@ namespace DanmakuGame
                 return _bullets;
             }
         }
-
-        //void BulletsMove()
-        //{
-        //    foreach (var bullet in Bullets)
-        //    {
-        //        Point pt = bullet.Location;
-        //        pt.Y -= 10;
-        //        bullet.Location = pt;
-        //        int BULLET_HEIGHT = 200; //自分で足してみた 謎の機能
-
-        //        if (bullet.Location.Y < -BULLET_HEIGHT)
-        //            bullet.Dispose();
-        //    }
-        //}
-
 
 
         private int countTimerTick;
