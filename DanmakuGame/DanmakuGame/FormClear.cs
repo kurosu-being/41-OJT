@@ -12,9 +12,6 @@ namespace DanmakuGame
 {
     public partial class FormClear : Form
     {
-        public FormClear()
-        {
-            InitializeComponent();
-        }
+        
     }
 }
