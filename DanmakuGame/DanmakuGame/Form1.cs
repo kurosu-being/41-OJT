@@ -209,7 +209,7 @@ namespace DanmakuGame
             for (int i = playerBullets.Count - 1; i >= 0; i--)  // プレイヤーの弾丸と敵機の当たり判定をチェックするためのループ
             {
                 PictureBox bullet = playerBullets[i];
-                if (bullet.Left < pictureBox_Teki1.Right && bullet.Right > pictureBox_Teki1.Left && bullet.Top < pictureBox_Teki1.Bottom && bullet.Bottom > pictureBox_Teki1.Top)　// プレイヤーの弾丸と敵機の境界が交わっているかをチェック
+                if (bullet.Left < pictureBox_Teki1.Right && bullet.Right > pictureBox_Teki1.Left && bullet.Top + 10 < pictureBox_Teki1.Bottom && bullet.Bottom > pictureBox_Teki1.Top)　// プレイヤーの弾丸と敵機の境界が交わっているかをチェック
                 {
                     this.Controls.Remove(playerBullets[i]);　// 弾丸をフォームから削除
                     playerBullets.RemoveAt(i);  // 弾丸をフォームから削除
@@ -220,7 +220,9 @@ namespace DanmakuGame
                     if (enemyLife <= 0)  //敵のライフが０以下かどうかチェック
                     {
                         gameTimer.Stop();
-                        Application.Exit();
+                        FormGameClear Bdan = new FormGameClear();
+                        Bdan.Show();
+                        //Application.Exit();
                         //Application.Run(new FormClear());
                     }
                 }
@@ -235,7 +237,9 @@ namespace DanmakuGame
                     enemyBullets.RemoveAt(i);  // 弾丸をフォームから削除
 
                     gameTimer.Stop();
-                    Application.Exit();
+                    FormGameOver Adan = new FormGameOver();
+                    Adan.Show();
+                    //Application.Exit();
                     //Application.Run(new FormGameOver());
                 }
             }
