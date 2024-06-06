@@ -179,7 +179,6 @@ namespace DanmakuGame
                     playerBullets.RemoveAt(i);
                 }
             }
-
             for (int i = enemyBullets.Count - 1; i >= 0; i--)
             {
                 if (enemyBullets[i].Bounds.IntersectsWith(pictureBoxJiki.Bounds))
