@@ -151,22 +151,27 @@ namespace DanmakuGame
 
         public class EnemyBullet : PictureBox
         {
+            public EnemyBullet()
+            {
+
+            }
+
             public int speed = 0;
 
             static int ENEMY_BULLET_WIDTH = 2;
             static int ENEMY_BULLET_HEIGHT = 8;
 
-            public static EnemyBullet CreateBullet(Enemy enemy, int speed)
-            {
-                int center = (enemy.Left + enemy.Right) / 2;
-                EnemyBullet bullet = new EnemyBullet();
-                bullet.Location = new Point(center, enemy.Bottom);
-                bullet.Size = new Size(ENEMY_BULLET_WIDTH, ENEMY_BULLET_HEIGHT);
-                bullet.BackColor = Color.Red;
-                bullet.Parent = enemy.Parent;
-                bullet.speed = speed;
-                return bullet;
-            }
+            //public static EnemyBullet CreateBullet(Enemy enemy, int speed)
+            //{
+            //    int center = (enemy.Left + enemy.Right) / 2;
+            //    EnemyBullet bullet = new EnemyBullet();
+            //    bullet.Location = new Point(center, enemy.Bottom);
+            //    bullet.Size = new Size(ENEMY_BULLET_WIDTH, ENEMY_BULLET_HEIGHT);
+            //    bullet.BackColor = Color.Red;
+            //    bullet.Parent = enemy.Parent;
+            //    bullet.speed = speed;
+            //    return bullet;
+            //}
         }
 
         private void CheckBulletCollishion() //自機と敵機の当たり判定
@@ -192,11 +197,12 @@ namespace DanmakuGame
         private void LaunchEnemyBullet()
         {
             int centerX = pictureBox_Teki1.Left + pictureBox_Teki1.Width / 2;
-            EnemyBullet bullet = new EnemyBullet
+            EnemyBullet bullet = new EnemyBullet //EnemyBulletは型　bulletがオブジェクト
+
             {
                 Location = new Point(centerX - 2, pictureBox_Teki1.Bottom),
                 Size = new Size(6, 10),
-                BackColor = Color.White,
+                BackColor = Color.Red,
                 speed = 10
             };
 
@@ -221,15 +227,9 @@ namespace DanmakuGame
         public class EnemyManager
         {
 
-            static List<EnemyBullet> _enemyBullets = new List<EnemyBullet>();
-            static public List<EnemyBullet> EnemyBullets
-            {
-                get
-                {
-                    _enemyBullets = _enemyBullets.Where(x => !x.IsDisposed).ToList();
-                    return _enemyBullets;
-                }
-            }
+            //static List<EnemyBullet> _enemyBullets = new List<EnemyBullet>();
+
+
 
             static public void EnemyBulletsMove(List<EnemyBullet> aa)
             {
