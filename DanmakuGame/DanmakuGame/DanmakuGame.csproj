@@ -78,9 +78,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Teki.cs" />
-    <Compile Include="TekiTama.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <EmbeddedResource Include="Form1.ja-JP.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -37,7 +37,7 @@ namespace DanmakuGame
             playerBullets = new List<PictureBox>();　//弾のリストを初期化
             enemyBullets = new List<EnemyBullet>();
             enemyBullets2 = new List<EnemyBullet>();
-
+            enemyBullets3 = new List<EnemyBullet>();
 
             this.KeyDown += FormDanmaku_KeyDown;　//イベントハンドラを追加
             this.KeyUp += FormDanmaku_KeyUp;
@@ -63,6 +63,7 @@ namespace DanmakuGame
 
             EnemyManager.EnemyBulletsMove(enemyBullets);　//enemyManager内のEnemybulletsMoveメソッドをイベントハンドラに呼び出す
             EnemyManager.EnemyBulletsMove2(enemyBullets2);
+            EnemyManager.EnemyBulletsMove3(enemyBullets3);
         }
 
 
@@ -122,14 +123,7 @@ namespace DanmakuGame
 
         //弾のリストを定義。破壊・消滅していない弾のみを返す
         List<PictureBox> _bullets = new List<PictureBox>(); //なんだこの<>は
-        List<PictureBox> Bullets
-        {
-            get
-            {
-                _bullets = _bullets.Where(x => !x.IsDisposed).ToList();
-                return _bullets;
-            }
-        }
+        
 
         //ライフや死亡条件のプロパティを定義
         public object Life { get; private set; }
@@ -156,31 +150,13 @@ namespace DanmakuGame
         private List<PictureBox> playerBullets;
         private List<EnemyBullet> enemyBullets;
         private List<EnemyBullet> enemyBullets2;
+        private List<EnemyBullet> enemyBullets3;
         private Timer gameTimer;
         private bool isMovingLeft = false;
         private bool isMovingRight = false;
-        //private Enemy enemy;
-        //private object bullet;
         private const int playerSpeed = 10;
         private const int BulletSpeed = 10;
         private const int BulletSpeed2 = 15;
-
-
-        //public class jiki_Life
-        //{
-        //    int _Life = 0;
-
-        //    public int Life
-        //    {
-        //        get { return _Life; }
-        //        set
-        //        {
-        //            _Life = value;
-        //            if (_Life <= 0)
-        //                IsDead = true;
-        //        }
-        //    }
-        //}
 
 
 
@@ -191,18 +167,6 @@ namespace DanmakuGame
 
             static int ENEMY_BULLET_WIDTH = 2;
             static int ENEMY_BULLET_HEIGHT = 8;
-
-            public static EnemyBullet CreateBullet(Enemy enemy, int speed)　//弾丸を形成する静的メソッド
-            {
-                int center = (enemy.Left + enemy.Right) / 2;
-                EnemyBullet bullet = new EnemyBullet();
-                bullet.Location = new Point(center, enemy.Bottom);
-                bullet.Size = new Size(ENEMY_BULLET_WIDTH, ENEMY_BULLET_HEIGHT);
-                bullet.BackColor = Color.Red;
-                bullet.Parent = enemy.Parent;　　//弾丸の親コントローラーを敵の親コントロールに追加
-                bullet.speed = speed;       //弾丸の速度を設定
-                return bullet;      //生成した弾丸をリストに返す
-            }
         }
 
         public const int enemyInitialLife = 10; // 敵の初期HP
@@ -227,8 +191,7 @@ namespace DanmakuGame
                         FormGameClear Bdan = new FormGameClear();
                         Bdan.Show();
                         this.Visible = false;
-                        //Application.Exit();
-                        //Application.Run(new FormClear());
+                        
                     }
                 }
             }
@@ -271,6 +234,14 @@ namespace DanmakuGame
                 speed = 10
             };
 
+            EnemyBullet bullet3 = new EnemyBullet
+            {
+                Location = new Point(centerX + 10, pictureBox_Teki1.Bottom),
+                Size = new Size(6, 10),
+                BackColor = Color.White,
+                speed = 10
+            };
+
             enemyBullets.Add(bullet1);
             this.Controls.Add(bullet1);
             bullet1.BringToFront();
@@ -278,6 +249,10 @@ namespace DanmakuGame
             enemyBullets2.Add(bullet2);
             this.Controls.Add(bullet2);
             bullet2.BringToFront();
+
+            enemyBullets3.Add(bullet3);
+            this.Controls.Add(bullet3);
+            bullet3.BringToFront();
         }
 
         private void MovepictureBoxJiki()　　//自機が画面外にいかないようにするメソッド
@@ -299,14 +274,7 @@ namespace DanmakuGame
 
             static List<EnemyBullet> _enemyBullets = new List<EnemyBullet>();　　//駅の弾丸を保持するリスト
             static List<EnemyBullet> _enemyBullets2 = new List<EnemyBullet>();
-            static public List<EnemyBullet> EnemyBullets
-            {
-                get
-                {
-                    _enemyBullets = _enemyBullets.Where(x => !x.IsDisposed).ToList();
-                    return _enemyBullets;
-                }
-            }
+            static List<EnemyBullet> _enemyBullets3 = new List<EnemyBullet>();
 
             static public void EnemyBulletsMove(List<EnemyBullet> aa)　　//弾丸リストの要素を処理
             {
@@ -336,6 +304,23 @@ namespace DanmakuGame
 
                     if (pt.Y > 700)   //弾丸が画面外に出て場合、弾丸をリストから破棄
                         bullet2.Dispose();
+                }
+
+
+            }
+
+            static public void EnemyBulletsMove3(List<EnemyBullet> bb)  //弾丸リストの要素を処理
+            {
+
+                foreach (EnemyBullet bullet3 in bb)
+                {
+                    Point pt = bullet3.Location;  //弾丸の位置を取得
+                    pt.Y += bullet3.speed;          //弾丸のy軸を＋していく
+                    pt.X -= bullet3.speed;          //弾丸のy軸を＋していく
+                    bullet3.Location = pt;          //移動後の位置を設定
+
+                    if (pt.Y > 700)   //弾丸が画面外に出て場合、弾丸をリストから破棄
+                        bullet3.Dispose();
                 }
 
 
