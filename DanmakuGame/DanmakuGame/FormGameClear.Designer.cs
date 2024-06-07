@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace DanmakuGame
 {
     partial class FormGameClear
@@ -20,6 +22,10 @@ namespace DanmakuGame
             }
             base.Dispose(disposing);
         }
+
+
+        
+
 
         #region Windows Form Designer generated code
 
@@ -51,12 +57,13 @@ namespace DanmakuGame
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("UD デジタル 教科書体 NP-R", 18F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(151, 174);
+            this.label2.Location = new System.Drawing.Point(76, 253);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 28);
+            this.label2.Size = new System.Drawing.Size(254, 28);
             this.label2.TabIndex = 7;
-            this.label2.Text = "再出撃";
+            this.label2.Text = "Press S for Continue";
+            this.label2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label2_MouseClick);
             // 
             // label1
             // 
