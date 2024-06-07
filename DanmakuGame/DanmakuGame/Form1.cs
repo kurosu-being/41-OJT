@@ -164,6 +164,7 @@ namespace DanmakuGame
         {
 
             public int speed = 0;
+            public int directionX = 1;
 
             static int ENEMY_BULLET_WIDTH = 2;
             static int ENEMY_BULLET_HEIGHT = 8;
@@ -211,6 +212,40 @@ namespace DanmakuGame
                     //Application.Exit();                    
                 }
             }
+
+            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            {
+                EnemyBullet enemyBullet2 = enemyBullets2[i];
+
+                if (enemyBullet2.Left < pictureBoxJiki.Right && enemyBullet2.Right > pictureBoxJiki.Left && enemyBullet2.Top < pictureBoxJiki.Bottom && enemyBullet2.Bottom > pictureBoxJiki.Top)　　// 敵の弾丸と自機の境界が交差しているかどうかをチェック
+                {
+                    this.Controls.Remove(enemyBullets2[i]);　// 弾丸をフォームから削除   
+                    enemyBullets2.RemoveAt(i);  // 弾丸をフォームから削除
+
+                    gameTimer.Stop();
+                    FormGameOver Adan = new FormGameOver();
+                    Adan.Show();
+                    this.Visible = false;
+                    //Application.Exit();                    
+                }
+            }
+
+            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            {
+                EnemyBullet enemyBullet3 = enemyBullets3[i];
+
+                if (enemyBullet3.Left < pictureBoxJiki.Right && enemyBullet3.Right > pictureBoxJiki.Left && enemyBullet3.Top < pictureBoxJiki.Bottom && enemyBullet3.Bottom > pictureBoxJiki.Top)　　// 敵の弾丸と自機の境界が交差しているかどうかをチェック
+                {
+                    this.Controls.Remove(enemyBullets3[i]);　// 弾丸をフォームから削除   
+                    enemyBullets3.RemoveAt(i);  // 弾丸をフォームから削除
+
+                    gameTimer.Stop();
+                    FormGameOver Adan = new FormGameOver();
+                    Adan.Show();
+                    this.Visible = false;
+                    //Application.Exit();                    
+                }
+            }
         }
 
 
@@ -230,7 +265,7 @@ namespace DanmakuGame
             {
                 Location = new Point(centerX - 10, pictureBox_Teki1.Bottom),
                 Size = new Size(6, 10),
-                BackColor = Color.White,
+                BackColor = Color.Red,
                 speed = 10
             };
 
@@ -285,8 +320,12 @@ namespace DanmakuGame
                     pt.Y += bullet1.speed;          //弾丸のy軸を＋していく
                     bullet1.Location = pt;          //移動後の位置を設定
 
+                    
                     if (pt.Y > 700)   //弾丸が画面外に出て場合、弾丸をリストから破棄
+                    {
                         bullet1.Dispose();
+                    }
+                   
                 }
 
 
@@ -299,28 +338,46 @@ namespace DanmakuGame
                 {
                     Point pt = bullet2.Location;  //弾丸の位置を取得
                     pt.Y += bullet2.speed;          //弾丸のy軸を＋していく
-                    pt.X += bullet2.speed;          //弾丸のy軸を＋していく
+                    pt.X += bullet2.speed * bullet2.directionX;          //弾丸のy軸を＋していく
                     bullet2.Location = pt;          //移動後の位置を設定
 
-                    if (pt.Y > 700)   //弾丸が画面外に出て場合、弾丸をリストから破棄
+                    if (pt.X > 790) // 右端にきたとき
+                    {
+                        bullet2.directionX = -1;
+                    }
+                    
+
+                    if (pt.Y > 700)   //弾丸が画面外に出た場合、弾丸をリストから破棄
+                    {
                         bullet2.Dispose();
+                    }
+                        
                 }
 
 
             }
 
-            static public void EnemyBulletsMove3(List<EnemyBullet> bb)  //弾丸リストの要素を処理
+            static public void EnemyBulletsMove3(List<EnemyBullet> cc)  //弾丸リストの要素を処理
             {
 
-                foreach (EnemyBullet bullet3 in bb)
+                foreach (EnemyBullet bullet3 in cc)
                 {
                     Point pt = bullet3.Location;  //弾丸の位置を取得
                     pt.Y += bullet3.speed;          //弾丸のy軸を＋していく
-                    pt.X -= bullet3.speed;          //弾丸のy軸を＋していく
+                    pt.X -= bullet3.speed * bullet3.directionX;          //弾丸のy軸を＋していく
                     bullet3.Location = pt;          //移動後の位置を設定
 
+                    
+                    if (pt.X <= 50) //左端にきたとき
+                    {
+                        bullet3.directionX--;
+                    }
+
                     if (pt.Y > 700)   //弾丸が画面外に出て場合、弾丸をリストから破棄
+                    {
                         bullet3.Dispose();
+                    }
+                       
                 }
 
 
