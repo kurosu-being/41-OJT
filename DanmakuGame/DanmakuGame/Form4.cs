@@ -28,17 +28,17 @@ namespace DanmakuGame
             Fdan.Show();
         }
 
-        private void label2_MouseClick(object sender, MouseEventArgs e)
-        {
-            //if (e.KeyCode == Keys.S)
-            //{
-            //}
+        
 
+        private void button1_KeyDown(object sender, KeyEventArgs e)
+        {
+            
             this.Visible = false;
 
             //FormDanmaku.Exit();
             FormStart Fdan = new FormStart();
             Fdan.Show();
+
         }
     }
 }
