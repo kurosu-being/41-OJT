@@ -16,5 +16,15 @@ namespace DanmakuGame
         {
             InitializeComponent();
         }
+
+        
+        private void button1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            this.Visible = false;
+
+            //FormDanmaku.Exit();
+            FormStart Fdan = new FormStart();
+            Fdan.Show();
+        }
     }
 }

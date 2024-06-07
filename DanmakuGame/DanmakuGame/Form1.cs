@@ -237,6 +237,7 @@ namespace DanmakuGame
                         gameTimer.Stop();
                         FormGameClear Bdan = new FormGameClear();
                         Bdan.Show();
+                        this.Visible = false;
                         //Application.Exit();
                         //Application.Run(new FormClear());
                     }
@@ -254,11 +255,13 @@ namespace DanmakuGame
                     gameTimer.Stop();
                     FormGameOver Adan = new FormGameOver();
                     Adan.Show();
-                    //Application.Exit();
-                    //Application.Run(new FormGameOver());
+                    this.Visible = false;
+                    //Application.Exit();                    
                 }
             }
-        }        
+        }
+
+        
 
         private void LaunchEnemyBullet()
         {
