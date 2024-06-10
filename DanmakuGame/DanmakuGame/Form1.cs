@@ -9,6 +9,10 @@ namespace DanmakuGame
 {
     public partial class FormDanmaku : Form
     {
+
+        int EnemyX = 0;
+        bool EnemyLeft = true;
+
         public FormDanmaku()
         {
             //IializeComponent();
@@ -64,6 +68,33 @@ namespace DanmakuGame
             //CheckEnemyBulletsCollishion();
 
             countTimerTick++;
+            Point pt = pictureBoxJiki.Location;
+
+            if(EnemyLeft)
+            {
+                if(pictureBox_Teki1.Left > 50)
+                {
+                    pictureBox_Teki1.Left -= enemySpeed;
+                    EnemyX = pictureBox_Teki1.Left;
+                }
+                else
+                {
+                    EnemyLeft = false;
+                }
+            }
+            else
+            {
+                if(pictureBox_Teki1.Right < this.ClientSize.Width - 50)
+                {
+                    pictureBox_Teki1.Left += enemySpeed;
+                    EnemyX = pictureBox_Teki1.Left;
+                }
+                else
+                {
+                    EnemyLeft = true;
+                }
+            }
+
             if (countTimerTick % 30 == 0) //タイマーのカウントを増加、○○カウントごとに自動で弾を打つ
             {
                 LaunchEnemyBullet();
@@ -91,7 +122,6 @@ namespace DanmakuGame
 
         }
 
-        
         private void FormDanmaku_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
@@ -208,6 +238,7 @@ namespace DanmakuGame
         private const int playerSpeed = 10;
         private const int BulletSpeed = 10;
         private const int BulletSpeed2 = 15;
+        private const int enemySpeed = 5;
 
 
 
@@ -455,7 +486,7 @@ namespace DanmakuGame
 
             EnemyBullet bullet2 = new EnemyBullet
             {
-                Location = new Point(pictureBox_Teki1.Left - 27, centerY + 15),
+                Location = new Point(pictureBox_Teki1.Left - 25, centerY + 15),
                 Size = new Size(6, 10),
                 BackColor = Color.Red,
                 speed = 3
@@ -471,7 +502,7 @@ namespace DanmakuGame
 
             EnemyBullet bullet4 = new EnemyBullet
             {
-                Location = new Point(pictureBox_Teki1.Left - 27, centerY + 25),
+                Location = new Point(pictureBox_Teki1.Left - 15, centerY + 25),
                 Size = new Size(6, 10),
                 BackColor = Color.Red,
                 speed = 3
