@@ -78,6 +78,14 @@ namespace DanmakuGame
             {
                 isMovingRight = false;
             }
+            else if(e.KeyCode == Keys.Up)
+            {
+                isMovingUp = false;
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                isMovingDown = false;
+            }
         }
 
         private void FormDanmaku_KeyDown(object sender, KeyEventArgs e)
@@ -89,6 +97,16 @@ namespace DanmakuGame
             else if (e.KeyCode == Keys.Right)
             {
                 isMovingRight = true;
+            }
+            else if(e.KeyCode == Keys.Up)
+            {
+                isMovingUp = true;
+                //MessageBox.Show("a");
+            }
+            else if(e.KeyCode == Keys.Down)
+            {
+                isMovingDown = true;
+                //MessageBox.Show("b");
             }
             else if (e.KeyCode == Keys.Space)
             {
@@ -154,6 +172,8 @@ namespace DanmakuGame
         private Timer gameTimer;
         private bool isMovingLeft = false;
         private bool isMovingRight = false;
+        private bool isMovingUp = false;
+        private bool isMovingDown = false;
         private const int playerSpeed = 10;
         private const int BulletSpeed = 10;
         private const int BulletSpeed2 = 15;
@@ -211,6 +231,39 @@ namespace DanmakuGame
                     //Application.Exit();                    
                 }
             }
+            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            {
+                EnemyBullet enemyBullet2 = enemyBullets2[i];
+
+                if (enemyBullet2.Left < pictureBoxJiki.Right && enemyBullet2.Right > pictureBoxJiki.Left && enemyBullet2.Top < pictureBoxJiki.Bottom && enemyBullet2.Bottom > pictureBoxJiki.Top)　　// 敵の弾丸と自機の境界が交差しているかどうかをチェック
+                {
+                    this.Controls.Remove(enemyBullets2[i]);　// 弾丸をフォームから削除   
+                    enemyBullets.RemoveAt(i);  // 弾丸をフォームから削除
+
+                    gameTimer.Stop();
+                    FormGameOver Adan = new FormGameOver();
+                    Adan.Show();
+                    this.Visible = false;
+                    //Application.Exit();                    
+                }
+            }
+            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            {
+                EnemyBullet enemyBullet3 = enemyBullets3[i];
+
+                if (enemyBullet3.Left < pictureBoxJiki.Right && enemyBullet3.Right > pictureBoxJiki.Left && enemyBullet3.Top < pictureBoxJiki.Bottom && enemyBullet3.Bottom > pictureBoxJiki.Top)　　// 敵の弾丸と自機の境界が交差しているかどうかをチェック
+                {
+                    this.Controls.Remove(enemyBullets3[i]);　// 弾丸をフォームから削除   
+                    enemyBullets.RemoveAt(i);  // 弾丸をフォームから削除
+
+                    gameTimer.Stop();
+                    FormGameOver Adan = new FormGameOver();
+                    Adan.Show();
+                    this.Visible = false;
+                    //Application.Exit();                    
+                }
+            }
+
         }
 
 
@@ -255,15 +308,25 @@ namespace DanmakuGame
             bullet3.BringToFront();
         }
 
-        private void MovepictureBoxJiki()　　//自機が画面外にいかないようにするメソッド
+        private void MovepictureBoxJiki()　　//自機が画面外にいかないように（または敵機に近づきすぎないように）するメソッド
         {
+            var currentForm = this.FindForm();
+
             if (isMovingLeft && pictureBoxJiki.Left > 0)
             {
                 pictureBoxJiki.Left -= playerSpeed;
             }
-            if (isMovingRight && pictureBoxJiki.Right < FormDanmaku.ActiveForm.Width)
+            if (isMovingRight && pictureBoxJiki.Right < currentForm.ClientSize.Width)
             {
                 pictureBoxJiki.Left += playerSpeed;
+            }
+            if(isMovingUp && pictureBoxJiki.Top > pictureBox_Teki1.Bottom + 100)
+            {
+                pictureBoxJiki.Top -= playerSpeed;
+            }
+            if(isMovingDown && pictureBoxJiki.Bottom < currentForm.ClientSize.Height - 10)  //「< FormDanmaku.ActiveForm.Bottom - 50」では上手くいかなかったゴリ押し
+            {
+                pictureBoxJiki.Top += playerSpeed;
             }
         }
 
@@ -319,7 +382,7 @@ namespace DanmakuGame
                     pt.X -= bullet3.speed;          //弾丸のy軸を＋していく
                     bullet3.Location = pt;          //移動後の位置を設定
 
-                    if (pt.Y > 700)   //弾丸が画面外に出て場合、弾丸をリストから破棄
+                    if (pt.Y > 700)   //弾丸が画面外に出た場合、弾丸をリストから破棄
                         bullet3.Dispose();
                 }
 
