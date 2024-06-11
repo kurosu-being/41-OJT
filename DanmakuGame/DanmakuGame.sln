@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.34902.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanmakuGame", "DanmakuGame\DanmakuGame.csproj", "{4411BC94-A753-4397-8930-DDADB93E5847}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DA0CC8D4-892F-4DCA-BAC7-A1742126D192}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Downloads\EnemyImage.png = ..\..\..\..\Downloads\EnemyImage.png
+		..\..\..\..\Downloads\PlayerBullet.png = ..\..\..\..\Downloads\PlayerBullet.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

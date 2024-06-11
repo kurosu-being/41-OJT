@@ -56,6 +56,7 @@ namespace DanmakuGame
             resources.ApplyResources(this.pictureBox_Teki1, "pictureBox_Teki1");
             this.pictureBox_Teki1.Name = "pictureBox_Teki1";
             this.pictureBox_Teki1.TabStop = false;
+            this.pictureBox_Teki1.Click += new System.EventHandler(this.pictureBox_Teki1_Click);
             // 
             // panel1
             // 
