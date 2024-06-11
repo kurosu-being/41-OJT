@@ -20,11 +20,10 @@ namespace DanmakuGame
         
         private void button1_KeyDown_1(object sender, KeyEventArgs e)
         {
-            this.Visible = false;
-
-            //FormDanmaku.Exit();
+            //FormGameClear.Exit();
             FormStart Fdan = new FormStart();
             Fdan.Show();
+            this.Visible = false;
         }
     }
 }
