@@ -22,7 +22,7 @@ namespace DanmakuGame
             this.BackColor = Color.Black;
 
             pictureBoxJiki = new PictureBox();
-            pictureBoxJiki.Size = new Size(30, 30);
+            pictureBoxJiki.Size = new Size(20, 20);
             pictureBoxJiki.BackColor = Color.White;
             pictureBoxJiki.Location = new Point(this.ClientSize.Width / 2 - pictureBoxJiki.Width / 2, this.ClientSize.Height - 60);
             //Clientはクライアント領域を指し、フォームからタイトルバーと境界線をのぞいたサイズを指す。
@@ -55,8 +55,18 @@ namespace DanmakuGame
 
             gameTimer = new Timer();　//タイマーを追加。Tickイベントハンドラーを追加*/
             gameTimer.Tick += Gametimer_Tick;
-            gameTimer.Interval = 30;
+            gameTimer.Interval = 50;
             gameTimer.Start();
+
+            gameTimer2 = new Timer();
+            gameTimer2.Tick += Gametimer2_Tick;
+            gameTimer2.Interval = 30;
+            gameTimer2.Start();
+
+            gameTimer3 = new Timer();
+            gameTimer3.Tick += Gametimer3_Tick;
+            gameTimer3.Interval = 40;
+            gameTimer3.Start();
 
         }
 
@@ -68,47 +78,13 @@ namespace DanmakuGame
             //CheckEnemyBulletsCollishion();
 
             countTimerTick++;
-            Point pt = pictureBoxJiki.Location;
+            Point pt = pictureBoxJiki.Location;            
 
-            if(EnemyLeft)
-            {
-                if(pictureBox_Teki1.Left > 50)
-                {
-                    pictureBox_Teki1.Left -= enemySpeed;
-                    EnemyX = pictureBox_Teki1.Left;
-                }
-                else
-                {
-                    EnemyLeft = false;
-                }
-            }
-            else
-            {
-                if(pictureBox_Teki1.Right < this.ClientSize.Width - 50)
-                {
-                    pictureBox_Teki1.Left += enemySpeed;
-                    EnemyX = pictureBox_Teki1.Left;
-                }
-                else
-                {
-                    EnemyLeft = true;
-                }
-            }
-
-            if (countTimerTick % 30 == 0) //タイマーのカウントを増加、○○カウントごとに自動で弾を打つ
+            if (countTimerTick % 50 == 0) //タイマーのカウントを増加、○○カウントごとに自動で弾を打つ
             {
                 LaunchEnemyBullet();
-            }
-            else if (countTimerTick % 20 == 0)
-            {
-                LuanchEnemyBullet2();
-            }
-            else if (countTimerTick % 30 == 0)
-            {
-                LuanchEnemyBullet3();
-            }
-
-
+            }            
+            
             EnemyManager.EnemyBulletsMove(enemyBullets);　//enemyManager内のEnemybulletsMoveメソッドをイベントハンドラに呼び出す
             EnemyManager.EnemyBulletsMove2(enemyBullets2);
             EnemyManager.EnemyBulletsMove3(enemyBullets3);
@@ -122,7 +98,50 @@ namespace DanmakuGame
 
         }
 
-        private void FormDanmaku_KeyUp(object sender, KeyEventArgs e)
+        private void Gametimer2_Tick(object sender, EventArgs e)　//イベントハンドラ内で、プレイヤーの移動、弾の移動、弾の衝突判定を実行
+        {
+            countTimerTick2++;
+            if (countTimerTick2 % 20 == 0)
+            {
+                LuanchEnemyBullet2();
+            }
+
+            if (EnemyLeft)
+            {
+                if (pictureBox_Teki1.Left > 50)
+                {
+                    pictureBox_Teki1.Left -= enemySpeed;
+                    EnemyX = pictureBox_Teki1.Left;
+                }
+                else
+                {
+                    EnemyLeft = false;
+                }
+            }
+            else
+            {
+                if (pictureBox_Teki1.Right < this.ClientSize.Width - 50)
+                {
+                    pictureBox_Teki1.Left += enemySpeed;
+                    EnemyX = pictureBox_Teki1.Left;
+                }
+                else
+                {
+                    EnemyLeft = true;
+                }
+            }
+        }
+
+        private void Gametimer3_Tick(object sender, EventArgs e)
+        {
+            countTimerTick3++;
+            if (countTimerTick2 % 40 == 0)
+            {
+                LuanchEnemyBullet3();
+            }
+        }
+
+            private void FormDanmaku_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
             {
@@ -219,6 +238,8 @@ namespace DanmakuGame
 
 
         private int countTimerTick;
+        private int countTimerTick2;
+        private int countTimerTick3;
         private List<PictureBox> playerBullets;
         private List<EnemyBullet> enemyBullets;
         private List<EnemyBullet> enemyBullets2;
@@ -231,6 +252,8 @@ namespace DanmakuGame
         private List<EnemyBullet> enemyBullets9;
         private List<EnemyBullet> enemyBullets10;
         private Timer gameTimer;
+        private Timer gameTimer2;
+        private Timer gameTimer3;
         private bool isMovingLeft = false;
         private bool isMovingRight = false;
         private bool isMovingUp = false;
@@ -299,7 +322,7 @@ namespace DanmakuGame
 
             for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
-                EnemyBullet enemyBullet2 = enemyBullets2[i];
+                 EnemyBullet enemyBullet2 = enemyBullets2[i];
 
                 if (enemyBullet2.Left < pictureBoxJiki.Right && enemyBullet2.Right > pictureBoxJiki.Left && enemyBullet2.Top < pictureBoxJiki.Bottom && enemyBullet2.Bottom > pictureBoxJiki.Top)　　// 敵の弾丸と自機の境界が交差しているかどうかをチェック
                 {
@@ -471,7 +494,7 @@ namespace DanmakuGame
 
 
 
-        private void LaunchEnemyBullet()　　//１０カウントごと
+        private void LaunchEnemyBullet()　　//５０カウントごと
         {
             //左から順にbullet1、bullet2、bullet3、bullet4、...
             int centerX = pictureBox_Teki1.Left + pictureBox_Teki1.Width / 2;
@@ -482,15 +505,7 @@ namespace DanmakuGame
                 Size = new Size(6, 10),
                 BackColor = Color.Red,
                 speed = 3
-            };
-
-            EnemyBullet bullet2 = new EnemyBullet
-            {
-                Location = new Point(pictureBox_Teki1.Left - 25, centerY + 15),
-                Size = new Size(6, 10),
-                BackColor = Color.Red,
-                speed = 3
-            };
+            };            
 
             EnemyBullet bullet3 = new EnemyBullet
             {
@@ -498,51 +513,11 @@ namespace DanmakuGame
                 Size = new Size(6, 10),
                 BackColor = Color.Red,
                 speed = 3
-            };
-
-            EnemyBullet bullet4 = new EnemyBullet
-            {
-                Location = new Point(pictureBox_Teki1.Left - 15, centerY + 25),
-                Size = new Size(6, 10),
-                BackColor = Color.Red,
-                speed = 3
-            };
-
-            EnemyBullet bullet5 = new EnemyBullet
-            {
-                Location = new Point(centerX - 10, pictureBox_Teki1.Bottom +5),
-                Size = new Size(8, 20),
-                BackColor = Color.Red,
-                speed = 3
-            };
-
-            EnemyBullet bullet6 = new EnemyBullet
-            {
-                Location = new Point(centerX +8, pictureBox_Teki1.Bottom +5),
-                Size = new Size(8, 20),
-                BackColor = Color.Red,
-                speed = 3
-            };
-
-            EnemyBullet bullet7 = new EnemyBullet
-            {
-                Location = new Point(pictureBox_Teki1.Right + 15, centerY - 25),
-                Size = new Size(6, 10),
-                BackColor = Color.Red,
-                speed = 3
-            };
+            };                         
 
             EnemyBullet bullet8 = new EnemyBullet
             {
                 Location = new Point(pictureBox_Teki1.Right + 20, centerY - 20),
-                Size = new Size(6, 10),
-                BackColor = Color.Red,
-                speed = 3
-            };
-
-            EnemyBullet bullet9 = new EnemyBullet
-            {
-                Location = new Point(pictureBox_Teki1.Right + 25, centerY - 15),
                 Size = new Size(6, 10),
                 BackColor = Color.Red,
                 speed = 3
@@ -558,19 +533,43 @@ namespace DanmakuGame
 
             enemyBullets.Add(bullet1);
             this.Controls.Add(bullet1);
-            bullet1.BringToFront();
-
-            enemyBullets2.Add(bullet2);
-            this.Controls.Add(bullet2);
-            bullet2.BringToFront();
+            bullet1.BringToFront();           
 
             enemyBullets3.Add(bullet3);
             this.Controls.Add(bullet3);
             bullet3.BringToFront();
 
-            enemyBullets4.Add(bullet4);
-            this.Controls.Add(bullet4);
-            bullet4.BringToFront();
+            enemyBullets8.Add(bullet8);
+            this.Controls.Add(bullet8);
+            bullet8.BringToFront();
+
+            enemyBullets10.Add(bullet10);
+            this.Controls.Add(bullet10);
+            bullet10.BringToFront();
+        }
+
+        private void LuanchEnemyBullet2()　　//４０カウントごと
+        {
+            //左から順にbullet1、bullet2、bullet3、bullet4、...
+            int centerX = pictureBox_Teki1.Left + pictureBox_Teki1.Width / 2;
+            int centerY = pictureBox_Teki1.Top + pictureBox_Teki1.Height / 2;
+
+            EnemyBullet bullet5 = new EnemyBullet
+            {
+                Location = new Point(centerX - 10, pictureBox_Teki1.Bottom + 5),
+                Size = new Size(8, 20),
+                BackColor = Color.Red,
+                speed = 5
+            };
+
+            EnemyBullet bullet6 = new EnemyBullet
+            {
+                Location = new Point(centerX + 8, pictureBox_Teki1.Bottom + 5),
+                Size = new Size(8, 20),
+                BackColor = Color.Red,
+                speed = 5
+            };
+
 
             enemyBullets5.Add(bullet5);
             this.Controls.Add(bullet5);
@@ -579,34 +578,61 @@ namespace DanmakuGame
             enemyBullets6.Add(bullet6);
             this.Controls.Add(bullet6);
             bullet6.BringToFront();
+        }
+
+        private void LuanchEnemyBullet3()  //３０カウントごと
+        {
+            //左から順にbullet1、bullet2、bullet3、bullet4、...
+            int centerX = pictureBox_Teki1.Left + pictureBox_Teki1.Width / 2;
+            int centerY = pictureBox_Teki1.Top + pictureBox_Teki1.Height / 2;
+
+            EnemyBullet bullet2 = new EnemyBullet
+            {
+                Location = new Point(pictureBox_Teki1.Left - 25, centerY + 15),
+                Size = new Size(6, 10),
+                BackColor = Color.Red,
+                speed = 3
+            };
+
+            EnemyBullet bullet4 = new EnemyBullet
+            {
+                Location = new Point(pictureBox_Teki1.Left - 15, centerY + 25),
+                Size = new Size(6, 10),
+                BackColor = Color.Red,
+                speed = 3
+            };
+
+            EnemyBullet bullet7 = new EnemyBullet
+            {
+                Location = new Point(pictureBox_Teki1.Right + 15, centerY - 25),
+                Size = new Size(6, 10),
+                BackColor = Color.Red,
+                speed = 3
+            };
+
+            EnemyBullet bullet9 = new EnemyBullet
+            {
+                Location = new Point(pictureBox_Teki1.Right + 25, centerY - 15),
+                Size = new Size(6, 10),
+                BackColor = Color.Red,
+                speed = 3
+            };
+
+            enemyBullets2.Add(bullet2);
+            this.Controls.Add(bullet2);
+            bullet2.BringToFront();
+
+            enemyBullets4.Add(bullet4);
+            this.Controls.Add(bullet4);
+            bullet4.BringToFront();
 
             enemyBullets7.Add(bullet7);
             this.Controls.Add(bullet7);
             bullet7.BringToFront();
 
-            enemyBullets8.Add(bullet8);
-            this.Controls.Add(bullet8);
-            bullet8.BringToFront();
-
             enemyBullets9.Add(bullet9);
             this.Controls.Add(bullet9);
             bullet9.BringToFront();
-
-            enemyBullets10.Add(bullet10);
-            this.Controls.Add(bullet10);
-            bullet10.BringToFront();
-        }
-
-        private void LuanchEnemyBullet2()　　//２０カウントごと
-        {
-            
-        }
-
-        private void LuanchEnemyBullet3()  //３０カウントごと
-        {
-            ////左から順にbullet1、bullet2、bullet3、bullet4、...
-            //int centerX = pictureBox_Teki1.Left + pictureBox_Teki1.Width / 2;
-            //int centerY = pictureBox_Teki1.Top + pictureBox_Teki1.Height / 2;
         }
 
 
@@ -657,7 +683,7 @@ namespace DanmakuGame
                 {
                     Point pt = bullet1.Location;　　//弾丸の位置を取得
                     pt.Y += bullet1.speed;          //弾丸のy軸を＋していく
-                    pt.X -= bullet1.speed * bullet1.directionX * 4;          //弾丸のx軸を＋していく
+                    pt.X -= bullet1.speed * bullet1.directionX * 2;          //弾丸のx軸を＋していく
                     bullet1.Location = pt;          //移動後の位置を設定
 
                     if (pt.X > 780) // 右端にきたとき
@@ -686,7 +712,7 @@ namespace DanmakuGame
                 {
                     Point pt = bullet2.Location;  //弾丸の位置を取得
                     pt.Y += bullet2.speed;          //弾丸のy軸を＋していく
-                    pt.X -= bullet2.speed * bullet2.directionX * 2;          //弾丸のx軸を＋していく
+                    pt.X -= bullet2.speed * bullet2.directionX * 3 /2;          //弾丸のx軸を＋していく
                     bullet2.Location = pt;          //移動後の位置を設定
 
                     if (pt.X > 780) // 右端にきたとき
@@ -854,7 +880,7 @@ namespace DanmakuGame
                 {
                     Point pt = bullet9.Location;　　//弾丸の位置を取得
                     pt.Y += bullet9.speed;        //弾丸のy軸を＋していく
-                    pt.X += bullet9.speed * bullet9.directionX * 2;
+                    pt.X += bullet9.speed * bullet9.directionX * 3 / 2;
                     bullet9.Location = pt;          //移動後の位置を設定
 
                     if (pt.X > 780) // 右端にきたとき
@@ -883,7 +909,7 @@ namespace DanmakuGame
                 {
                     Point pt = bullet10.Location;　　//弾丸の位置を取得
                     pt.Y += bullet10.speed;          //弾丸のy軸を＋していく
-                    pt.X += bullet10.speed * bullet10.directionX * 4;
+                    pt.X += bullet10.speed * bullet10.directionX * 2;
                     bullet10.Location = pt;          //移動後の位置を設定
 
                     if (pt.X > 780) // 右端にきたとき

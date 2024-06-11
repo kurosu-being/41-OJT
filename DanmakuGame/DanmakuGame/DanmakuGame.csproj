@@ -75,6 +75,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Jiki.cs" />
+    <Compile Include="PlayerBullet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Teki.cs" />
