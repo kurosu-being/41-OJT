@@ -72,6 +72,8 @@ namespace DanmakuGame
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormDanmaku";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormDanmaku_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormDanmaku_KeyUp);

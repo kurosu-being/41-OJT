@@ -306,7 +306,7 @@ namespace DanmakuGame
                     }
 
 
-                    if (enemyLife <= 0)  //敵のライフが０以下かどうかチェック
+                    if (enemyLife == 0)  //敵のライフが０以下かどうかチェック
                     {
                         gameTimer.Stop();
                         FormGameClear Bdan = new FormGameClear();

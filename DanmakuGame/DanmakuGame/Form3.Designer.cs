@@ -38,24 +38,23 @@ namespace DanmakuGame
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("游明朝", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(102, 47);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(148, 99);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(234, 97);
+            this.label1.Size = new System.Drawing.Size(366, 185);
             this.label1.TabIndex = 0;
             this.label1.Text = "弾幕";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 26F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("游明朝", 26F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(131, 258);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(203, 329);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(166, 35);
+            this.label2.Size = new System.Drawing.Size(253, 67);
             this.label2.TabIndex = 1;
             this.label2.Text = "Press Key";
             // 
@@ -63,23 +62,24 @@ namespace DanmakuGame
             // 
             this.pictureBoxJiki.BackColor = System.Drawing.Color.White;
             this.pictureBoxJiki.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBoxJiki.Location = new System.Drawing.Point(194, 340);
-            this.pictureBoxJiki.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxJiki.Location = new System.Drawing.Point(296, 509);
             this.pictureBoxJiki.Name = "pictureBoxJiki";
-            this.pictureBoxJiki.Size = new System.Drawing.Size(42, 47);
+            this.pictureBoxJiki.Size = new System.Drawing.Size(70, 70);
             this.pictureBoxJiki.TabIndex = 4;
             this.pictureBoxJiki.TabStop = false;
             // 
             // FormStart
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(407, 429);
+            this.ClientSize = new System.Drawing.Size(678, 644);
             this.Controls.Add(this.pictureBoxJiki);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormStart";
             this.Text = "スタート画面";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormStart_KeyDown);

@@ -39,22 +39,20 @@ namespace DanmakuGame
             // 
             this.pictureBoxJiki.BackColor = System.Drawing.Color.White;
             this.pictureBoxJiki.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBoxJiki.Location = new System.Drawing.Point(179, 340);
-            this.pictureBoxJiki.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxJiki.Location = new System.Drawing.Point(305, 504);
             this.pictureBoxJiki.Name = "pictureBoxJiki";
-            this.pictureBoxJiki.Size = new System.Drawing.Size(42, 47);
+            this.pictureBoxJiki.Size = new System.Drawing.Size(70, 70);
             this.pictureBoxJiki.TabIndex = 6;
             this.pictureBoxJiki.TabStop = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Ravie", 36F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("游明朝 Demibold", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(11, 81);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(-18, 116);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(396, 63);
+            this.label1.Size = new System.Drawing.Size(644, 124);
             this.label1.TabIndex = 7;
             this.label1.Text = "GAMEOVER";
             // 
@@ -62,11 +60,12 @@ namespace DanmakuGame
             // 
             this.button1.BackColor = System.Drawing.Color.Black;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("UD デジタル 教科書体 N-B", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.Font = new System.Drawing.Font("游明朝 Demibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(10, 275);
+            this.button1.Location = new System.Drawing.Point(30, 360);
+            this.button1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(388, 60);
+            this.button1.Size = new System.Drawing.Size(647, 92);
             this.button1.TabIndex = 9;
             this.button1.Text = "Press Key for Continue";
             this.button1.UseVisualStyleBackColor = false;
@@ -74,16 +73,17 @@ namespace DanmakuGame
             // 
             // FormGameOver
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(410, 441);
+            this.ClientSize = new System.Drawing.Size(673, 636);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxJiki);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(426, 480);
-            this.MinimumSize = new System.Drawing.Size(426, 480);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(695, 692);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(695, 692);
             this.Name = "FormGameOver";
             this.Text = "ゲームオーバー画面";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJiki)).EndInit();

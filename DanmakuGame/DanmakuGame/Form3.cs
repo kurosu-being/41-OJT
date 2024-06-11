@@ -28,5 +28,10 @@ namespace DanmakuGame
             FormDanmaku Fdan = new FormDanmaku();
             Fdan.Show();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
