@@ -16,6 +16,7 @@ namespace DanmakuGame
         public FormDanmaku()
         {
             //IializeComponent();
+            InitializeEnemyLifeLabel1();
 
             this.DoubleBuffered = true; //ちらつき防止
             this.Size = new Size(800, 600);
@@ -188,11 +189,6 @@ namespace DanmakuGame
             bullet.BringToFront();
         }
 
-        private void FormDanmaku_Load(object sender, EventArgs e)
-        {
-
-        }
-
         //弾のリストを定義。破壊・消滅していない弾のみを返す
         List<PictureBox> _bullets = new List<PictureBox>(); //なんだこの<>は
         
@@ -254,6 +250,19 @@ namespace DanmakuGame
 
         public const int enemyInitialLife = 10; // 敵の初期HP
         public int enemyLife = enemyInitialLife; // 現在の敵のHP
+        private Label textEnemyLife; //　HP表示用のラベル
+
+        private void InitializeEnemyLifeLabel1()
+        {
+            //ラベルの作成
+            textEnemyLife = new Label();
+            textEnemyLife.Location = new System.Drawing.Point(10, 10);　//ラベルの位置
+            textEnemyLife.Size = new System.Drawing.Size(80, 30);　//ラベルのサイズ
+            textEnemyLife.BackColor = System.Drawing.Color.White;
+            textEnemyLife.Font = new System.Drawing.Font("Arial", 18, FontStyle.Bold);
+            textEnemyLife.Text = "HP:" + enemyLife.ToString();
+            this.Controls.Add(textEnemyLife);
+        }
 
         private void CheckBulletCollishion() //自機と敵機の当たり判定
         {
@@ -266,6 +275,12 @@ namespace DanmakuGame
                     playerBullets.RemoveAt(i);  // 弾丸をフォームから削除
 
                     enemyLife--;  //敵のライフを1減らす
+
+                    if (textEnemyLife != null)
+                    {
+                        textEnemyLife.Text = "HP:" + enemyLife.ToString();
+                        textEnemyLife.BringToFront();
+                    }
 
 
                     if (enemyLife <= 0)  //敵のライフが０以下かどうかチェック
@@ -906,8 +921,6 @@ namespace DanmakuGame
             }
 
         }
-
-
     }
 }
 

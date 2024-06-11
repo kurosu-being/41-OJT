@@ -33,16 +33,22 @@ namespace DanmakuGame
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDanmaku));
-            this.pictureBox_Teki1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxJiki = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Teki1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJiki)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Teki1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJiki)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBoxJiki
+            // 
+            this.pictureBoxJiki.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.pictureBoxJiki, "pictureBoxJiki");
+            this.pictureBoxJiki.Name = "pictureBoxJiki";
+            this.pictureBoxJiki.TabStop = false;
             // 
             // pictureBox_Teki1
             // 
@@ -51,27 +57,12 @@ namespace DanmakuGame
             this.pictureBox_Teki1.Name = "pictureBox_Teki1";
             this.pictureBox_Teki1.TabStop = false;
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Name = "label1";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox_Teki1);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            // 
-            // pictureBoxJiki
-            // 
-            this.pictureBoxJiki.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.pictureBoxJiki, "pictureBoxJiki");
-            this.pictureBoxJiki.Name = "pictureBoxJiki";
-            this.pictureBoxJiki.TabStop = false;
             // 
             // FormDanmaku
             // 
@@ -82,13 +73,11 @@ namespace DanmakuGame
             this.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormDanmaku";
-            this.Load += new System.EventHandler(this.FormDanmaku_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormDanmaku_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormDanmaku_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJiki)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Teki1)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJiki)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -99,14 +88,11 @@ namespace DanmakuGame
         //}
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox_Teki1;
-        private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.PictureBox pictureBoxJiki;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox_Teki1;
         private System.Windows.Forms.Panel panel1;
-
     }
 }
 
