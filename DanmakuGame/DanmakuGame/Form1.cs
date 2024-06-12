@@ -39,7 +39,9 @@ namespace DanmakuGame
             //IsDead = false;     //敵が生きている状態を設定
             this.Controls.Add(pictureBox_Teki1); //フォームのコントロールに追加
 
-            playerBullets = new List<PictureBox>();　//弾のリストを初期化
+            playerBullets1 = new List<PictureBox>(); //弾のリストを初期化
+            playerBullets2 = new List<PictureBox>();　//弾のリストを初期化
+            playerBullets3 = new List<PictureBox>();　//弾のリストを初期化
             enemyBullets = new List<EnemyBullet>();
             enemyBullets2 = new List<EnemyBullet>();
             enemyBullets3 = new List<EnemyBullet>();
@@ -193,19 +195,38 @@ namespace DanmakuGame
             Point pt = pictureBoxJiki.Location;
             int width = pictureBoxJiki.Size.Width;
             int centerX = pt.X + pictureBoxJiki.Width / 2;
-
-            PictureBox bullet = new PictureBox
+            PictureBox bullet1 = new PictureBox
+            {
+                Location = new Point(centerX - 10, pt.Y),
+                Size = new Size(3, 6), //弾が大きい可能性があったから弾一つのサイズを小さくした
+                BackColor = Color.Red,
+                Parent = this
+            };
+            PictureBox bullet2 = new PictureBox
             {
                 Location = new Point(centerX - 2, pt.Y),
-                Size = new Size(5, 5), //弾が大きい可能性があったから弾一つのサイズを小さくした
+                Size = new Size(3, 6), //弾が大きい可能性があったから弾一つのサイズを小さくした
                 BackColor = Color.White,
+                Parent = this
+            };
+            PictureBox bullet3 = new PictureBox
+            {
+                Location = new Point(centerX +6, pt.Y),
+                Size = new Size(3, 6), //弾が大きい可能性があったから弾一つのサイズを小さくした
+                BackColor = Color.Red,
                 Parent = this
             };
 
             //新しい弾をリストに追加、フォームのコントロールに追加
-            playerBullets.Add(bullet);
-            this.Controls.Add(bullet);
-            bullet.BringToFront();
+            playerBullets1.Add(bullet1);
+            this.Controls.Add(bullet1);
+            bullet1.BringToFront();
+            playerBullets2.Add(bullet2);
+            this.Controls.Add(bullet2);
+            bullet2.BringToFront();
+            playerBullets3.Add(bullet3);
+            this.Controls.Add(bullet3);
+            bullet3.BringToFront();
         }
 
         //弾のリストを定義。破壊・消滅していない弾のみを返す
@@ -220,23 +241,53 @@ namespace DanmakuGame
         //弾を移動。画面外に出た弾は消滅（ReMove）させる
         private void MoveBullets()
         {
-            for (int i = playerBullets.Count - 1; i >= 0; i--)
+            for (int i = playerBullets1.Count - 1; i >= 0; i--)
             {
-                playerBullets[i].Top -= BulletSpeed;
-                if (playerBullets[i].Top < 0)
+                playerBullets1[i].Top -= BulletSpeed;
+                playerBullets1[i].Left -= BulletSpeed * 1 / 10;
+
+
+                if (playerBullets1[i].Top < 0)
                 {
-                    this.Controls.Remove(playerBullets[i]);
-                    playerBullets.RemoveAt(i);
+                    this.Controls.Remove(playerBullets1[i]);
+                    playerBullets1.RemoveAt(i);
                 }
 
             }
+            for (int i = playerBullets2.Count - 1; i >= 0; i--)
+            {
+                playerBullets2[i].Top -= BulletSpeed;
+
+                if (playerBullets2[i].Top < 0)
+                {
+                    this.Controls.Remove(playerBullets2[i]);
+                    playerBullets2.RemoveAt(i);
+                }
+
+            }
+            for (int i = playerBullets3.Count - 1; i >= 0; i--)
+            {
+                playerBullets3[i].Top -= BulletSpeed;
+                playerBullets3[i].Left += BulletSpeed * 1 / 10;
+
+
+                if (playerBullets3[i].Top < 0)
+                {
+                    this.Controls.Remove(playerBullets3[i]);
+                    playerBullets3.RemoveAt(i);
+                }
+
+            }
+
         }
 
 
         private int countTimerTick;
         private int countTimerTick2;
         private int countTimerTick3;
-        private List<PictureBox> playerBullets;
+        private List<PictureBox> playerBullets1;
+        private List<PictureBox> playerBullets2;
+        private List<PictureBox> playerBullets3;
         private List<EnemyBullet> enemyBullets;
         private List<EnemyBullet> enemyBullets2;
         private List<EnemyBullet> enemyBullets3;
@@ -289,13 +340,13 @@ namespace DanmakuGame
 
         private void CheckBulletCollishion() //自機と敵機の当たり判定
         {
-            for (int i = playerBullets.Count - 1; i >= 0; i--)  // プレイヤーの弾丸と敵機の当たり判定をチェックするためのループ
+            for (int i = playerBullets1.Count - 1; i >= 0; i--)  // プレイヤーの弾丸と敵機の当たり判定をチェックするためのループ
             {
-                PictureBox bullet = playerBullets[i];
-                if (bullet.Left < pictureBox_Teki1.Right && bullet.Right > pictureBox_Teki1.Left && bullet.Top + 10 < pictureBox_Teki1.Bottom && bullet.Bottom > pictureBox_Teki1.Top)　// プレイヤーの弾丸と敵機の境界が交わっているかをチェック
+                PictureBox bullet1 = playerBullets1[i];
+                if (bullet1.Left < pictureBox_Teki1.Right && bullet1.Right > pictureBox_Teki1.Left && bullet1.Top + 10 < pictureBox_Teki1.Bottom && bullet1.Bottom > pictureBox_Teki1.Top)　// プレイヤーの弾丸と敵機の境界が交わっているかをチェック
                 {
-                    this.Controls.Remove(playerBullets[i]);　// 弾丸をフォームから削除
-                    playerBullets.RemoveAt(i);  // 弾丸をフォームから削除
+                    this.Controls.Remove(playerBullets1[i]);　// 弾丸をフォームから削除
+                    playerBullets1.RemoveAt(i);  // 弾丸をフォームから削除
 
                     enemyLife--;  //敵のライフを1減らす
 
@@ -313,6 +364,60 @@ namespace DanmakuGame
                         Bdan.Show();
                         this.Visible = false;
                         
+                    }
+                }
+            }
+            for (int i = playerBullets2.Count - 1; i >= 0; i--)  // プレイヤーの弾丸と敵機の当たり判定をチェックするためのループ
+            {
+                PictureBox bullet2 = playerBullets2[i];
+                if (bullet2.Left < pictureBox_Teki1.Right && bullet2.Right > pictureBox_Teki1.Left && bullet2.Top + 10 < pictureBox_Teki1.Bottom && bullet2.Bottom > pictureBox_Teki1.Top)　// プレイヤーの弾丸と敵機の境界が交わっているかをチェック
+                {
+                    this.Controls.Remove(playerBullets2[i]);　// 弾丸をフォームから削除
+                    playerBullets2.RemoveAt(i);  // 弾丸をフォームから削除
+
+                    enemyLife--;  //敵のライフを1減らす
+
+                    if (textEnemyLife != null)
+                    {
+                        textEnemyLife.Text = "HP:" + enemyLife.ToString();
+                        textEnemyLife.BringToFront();
+                    }
+
+
+                    if (enemyLife == 0)  //敵のライフが０以下かどうかチェック
+                    {
+                        gameTimer.Stop();
+                        FormGameClear Bdan = new FormGameClear();
+                        Bdan.Show();
+                        this.Visible = false;
+
+                    }
+                }
+            }
+            for (int i = playerBullets3.Count - 1; i >= 0; i--)  // プレイヤーの弾丸と敵機の当たり判定をチェックするためのループ
+            {
+                PictureBox bullet3 = playerBullets3[i];
+                if (bullet3.Left < pictureBox_Teki1.Right && bullet3.Right > pictureBox_Teki1.Left && bullet3.Top + 10 < pictureBox_Teki1.Bottom && bullet3.Bottom > pictureBox_Teki1.Top)　// プレイヤーの弾丸と敵機の境界が交わっているかをチェック
+                {
+                    this.Controls.Remove(playerBullets3[i]);　// 弾丸をフォームから削除
+                    playerBullets3.RemoveAt(i);  // 弾丸をフォームから削除
+
+                    enemyLife--;  //敵のライフを1減らす
+
+                    if (textEnemyLife != null)
+                    {
+                        textEnemyLife.Text = "HP:" + enemyLife.ToString();
+                        textEnemyLife.BringToFront();
+                    }
+
+
+                    if (enemyLife == 0)  //敵のライフが０以下かどうかチェック
+                    {
+                        gameTimer.Stop();
+                        FormGameClear Bdan = new FormGameClear();
+                        Bdan.Show();
+                        this.Visible = false;
+
                     }
                 }
             }
@@ -342,7 +447,6 @@ namespace DanmakuGame
                 if (enemyBullet2.Left < pictureBoxJiki.Right && enemyBullet2.Right > pictureBoxJiki.Left && enemyBullet2.Top < pictureBoxJiki.Bottom && enemyBullet2.Bottom > pictureBoxJiki.Top)　　// 敵の弾丸と自機の境界が交差しているかどうかをチェック
                 {
                     this.Controls.Remove(enemyBullets2[i]);　// 弾丸をフォームから削除   
-
                     enemyBullets2.RemoveAt(i);  // 弾丸をフォームから削除
 
 
