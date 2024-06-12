@@ -14,6 +14,9 @@ namespace DanmakuGame
         int EnemyX = 0;
         bool EnemyLeft = true;
 
+        public FormGameClear aa = null;
+        public FormGameOver bb = null;
+
         public FormDanmaku()
         {
             //IializeComponent();
@@ -257,8 +260,9 @@ namespace DanmakuGame
             PictureBox bullet1 = new PictureBox
             {
                 Location = new Point(centerX - 10, pt.Y),
-                Size = new Size(3, 6), //弾が大きい可能性があったから弾一つのサイズを小さくした
-                BackColor = Color.Red,
+                Size = new Size(10, 10), //弾が大きい可能性があったから弾一つのサイズを小さくした
+                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Blue.png"),
+                SizeMode = PictureBoxSizeMode.StretchImage,
                 Parent = this
             };
             PictureBox bullet2 = new PictureBox
@@ -272,8 +276,9 @@ namespace DanmakuGame
             PictureBox bullet3 = new PictureBox
             {
                 Location = new Point(centerX +6, pt.Y),
-                Size = new Size(3, 6), //弾が大きい可能性があったから弾一つのサイズを小さくした
-                BackColor = Color.Red,
+                Size = new Size(10, 10), //弾が大きい可能性があったから弾一つのサイズを小さくした
+                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Blue.png"),
+                SizeMode = PictureBoxSizeMode.StretchImage,
                 Parent = this
             };
 
@@ -416,8 +421,12 @@ namespace DanmakuGame
                     if (enemyLife == 0)  //敵のライフが０以下かどうかチェック
                     {
                         gameTimer.Stop();
-                        FormGameClear Bdan = new FormGameClear();
-                        Bdan.Show();
+                        if (this.aa == null || this.aa.IsDisposed)
+                        { /* ヌル、または破棄されていたら */
+                            this.aa = new FormGameClear();
+                            FormGameClear Bdan = new FormGameClear();
+                            Bdan.Show();
+                        }
                         this.Visible = false;
                         
                     }
@@ -443,8 +452,12 @@ namespace DanmakuGame
                     if (enemyLife == 0)  //敵のライフが０以下かどうかチェック
                     {
                         gameTimer.Stop();
-                        FormGameClear Bdan = new FormGameClear();
-                        Bdan.Show();
+                        if (this.aa == null || this.aa.IsDisposed)
+                        { /* ヌル、または破棄されていたら */
+                            this.aa = new FormGameClear();
+                            FormGameClear Bdan = new FormGameClear();
+                            Bdan.Show();
+                        }
                         this.Visible = false;
 
                     }
@@ -470,8 +483,12 @@ namespace DanmakuGame
                     if (enemyLife == 0)  //敵のライフが０以下かどうかチェック
                     {
                         gameTimer.Stop();
-                        FormGameClear Bdan = new FormGameClear();
-                        Bdan.Show();
+                        if (this.aa == null || this.aa.IsDisposed)
+                        { /* ヌル、または破棄されていたら */
+                            this.aa = new FormGameClear();
+                            FormGameClear Bdan = new FormGameClear();
+                            Bdan.Show();
+                        }
                         this.Visible = false;
 
                     }
@@ -489,14 +506,18 @@ namespace DanmakuGame
                     enemyBullets.RemoveAt(i);  // 弾丸をフォームから削除
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets2.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                  EnemyBullet enemyBullet2 = enemyBullets2[i];
 
@@ -507,14 +528,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets3.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet3 = enemyBullets3[i];
 
@@ -526,14 +551,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets4.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet4 = enemyBullets4[i];
 
@@ -545,14 +574,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets5.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet5 = enemyBullets5[i];
 
@@ -564,14 +597,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets6.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet6 = enemyBullets6[i];
 
@@ -583,14 +620,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets7.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet7 = enemyBullets7[i];
 
@@ -602,14 +643,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets8.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet8 = enemyBullets8[i];
 
@@ -621,14 +666,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if(this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets9.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet9 = enemyBullets9[i];
 
@@ -640,14 +689,18 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.bb.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
                     this.Visible = false;
                     //Application.Exit();                    
                 }
             }
 
-            for (int i = enemyBullets.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
+            for (int i = enemyBullets10.Count - 1; i >= 0; i--)  // 敵機の弾丸と自機の当たり判定をチェックするためのループ
             {
                 EnemyBullet enemyBullet10 = enemyBullets10[i];
 
@@ -659,8 +712,13 @@ namespace DanmakuGame
 
 
                     gameTimer.Stop();
-                    FormGameOver Adan = new FormGameOver();
-                    Adan.Show();
+                    if (this.bb == null || this.aa.IsDisposed)
+                    { /* ヌル、または破棄されていたら */
+                        this.bb = new FormGameOver();
+                        FormGameOver Adan = new FormGameOver();
+                        Adan.Show();
+                    }
+
                     this.Visible = false;
                     //Application.Exit();                    
                 }
