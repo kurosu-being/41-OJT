@@ -383,7 +383,7 @@ namespace DanmakuGame
             public int directionX = 1;
         }
 
-        public const int enemyInitialLife = 10; // 敵の初期HP
+        public const int enemyInitialLife = 30; // 敵の初期HP
         public int enemyLife = enemyInitialLife; // 現在の敵のHP
         private Label textEnemyLife; //　HP表示用のラベル
 
