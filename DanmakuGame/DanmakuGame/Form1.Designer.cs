@@ -52,7 +52,7 @@ namespace DanmakuGame
             // 
             // pictureBox_Teki1
             // 
-            this.pictureBox_Teki1.BackColor = System.Drawing.Color.White;
+            this.pictureBox_Teki1.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.pictureBox_Teki1, "pictureBox_Teki1");
             this.pictureBox_Teki1.Name = "pictureBox_Teki1";
             this.pictureBox_Teki1.TabStop = false;
