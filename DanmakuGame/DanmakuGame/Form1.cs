@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace DanmakuGame
 {
@@ -30,7 +31,7 @@ namespace DanmakuGame
 
             pictureBoxJiki = new TransparentPictureBox();
             pictureBoxJiki.Size = new Size(30, 20);
-            pictureBoxJiki.ImageLocation = @"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\PlayerImage.png";
+            pictureBoxJiki.ImageLocation = "Properties/Resources/PlayerImage.png";
             pictureBoxJiki.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxJiki.BackColor = Color.Transparent;
             pictureBoxJiki.Location = new Point(this.ClientSize.Width / 2 - pictureBoxJiki.Width / 2, this.ClientSize.Height - 60);
@@ -38,9 +39,9 @@ namespace DanmakuGame
             this.Controls.Add(pictureBoxJiki);
             pictureBoxJiki.BringToFront();
 
-            pictureBox_Teki1 = new PictureBox();
+            pictureBox_Teki1 = new TransparentPictureBox();
             pictureBox_Teki1.Size = new Size(70, 70);
-            pictureBox_Teki1.ImageLocation = @"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\EnemyImage2.png";
+            pictureBox_Teki1.ImageLocation = "Properties/Resources/EnemyImage2.png";
             pictureBox_Teki1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox_Teki1.BackColor = Color.Transparent;
             pictureBox_Teki1.Location = new Point(this.ClientSize.Width / 2 - pictureBox_Teki1.Width / 2, 5);            
@@ -77,8 +78,17 @@ namespace DanmakuGame
             gameTimer3 = new Timer();
             gameTimer3.Tick += Gametimer3_Tick;
             gameTimer3.Interval = 40;
-            gameTimer3.Start();
+            gameTimer3.Start();          
 
+        }
+
+        public class TransparentPictureBox : PictureBox
+        {
+            public TransparentPictureBox()
+            {
+                SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+                BackColor = Color.Transparent;
+            }
         }
 
         private void Gametimer_Tick(object sender, EventArgs e)　//イベントハンドラ内で、プレイヤーの移動、弾の移動、弾の衝突判定を実行
@@ -176,7 +186,7 @@ namespace DanmakuGame
         {
             backgroundPictureBox1 = new PictureBox
             {
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\BackGround2.jpg"),
+                Image = Image.FromFile("Properties/Resources/BackGround2.jpg"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Size = new Size(this.ClientSize.Width, this.ClientSize.Height),
                 Location = new Point(0, 0)
@@ -184,7 +194,7 @@ namespace DanmakuGame
 
             backgroundPictureBox2 = new PictureBox
             {
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\BackGround2.jpg"),
+                Image = Image.FromFile("Properties/Resources/BackGround2.jpg"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Size = new Size(this.ClientSize.Width, this.ClientSize.Height),
                 Location = new Point(0, -this.ClientSize.Height)
@@ -261,7 +271,7 @@ namespace DanmakuGame
             {
                 Location = new Point(centerX - 10, pt.Y),
                 Size = new Size(10, 10), //弾が大きい可能性があったから弾一つのサイズを小さくした
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Blue.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Blue.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Parent = this
             };
@@ -269,7 +279,7 @@ namespace DanmakuGame
             {
                 Location = new Point(centerX - 2, pt.Y),
                 Size = new Size(10, 10), //弾が大きい可能性があったから弾一つのサイズを小さくした
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Blue.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Blue.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Parent = this
             };
@@ -277,7 +287,7 @@ namespace DanmakuGame
             {
                 Location = new Point(centerX +6, pt.Y),
                 Size = new Size(10, 10), //弾が大きい可能性があったから弾一つのサイズを小さくした
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Blue.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Blue.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Parent = this
             };
@@ -737,7 +747,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Left - 30, centerY - 10),  
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };            
@@ -746,7 +756,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Left - 20, centerY + 20),
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };                         
@@ -755,7 +765,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Right + 20, centerY - 20),
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };
@@ -764,7 +774,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Right + 30, centerY - 10),
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };
@@ -796,7 +806,7 @@ namespace DanmakuGame
             {
                 Location = new Point(centerX - 12, pictureBox_Teki1.Bottom + 5),
                 Size = new Size(20, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 5
             };
@@ -805,7 +815,7 @@ namespace DanmakuGame
             {
                 Location = new Point(centerX + 10, pictureBox_Teki1.Bottom + 5),
                 Size = new Size(20, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 5
             };
@@ -830,7 +840,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Left - 25, centerY + 15),
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };
@@ -839,7 +849,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Left - 15, centerY + 25),
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };
@@ -848,7 +858,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Right + 15, centerY - 25),
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };
@@ -857,7 +867,7 @@ namespace DanmakuGame
             {
                 Location = new Point(pictureBox_Teki1.Right + 25, centerY - 15),
                 Size = new Size(15, 15),
-                Image = Image.FromFile(@"C:\Users\ueshiba\Desktop\リポジトリ\NewDanmakuGame\DanmakuGame\DanmakuGame\Properties\Resources\Bullet_Red2.png"),
+                Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 speed = 3
             };
@@ -1182,5 +1192,7 @@ namespace DanmakuGame
 
         }
     }
+
+    
 }
 

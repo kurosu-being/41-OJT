@@ -121,7 +121,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PlayerImage.png" />
+    <Content Include="Properties\Resources\BackGround1.jpg" />
+    <Content Include="Properties\Resources\BackGround2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Resources\Bullet_Blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Resources\Bullet_Red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Resources\Bullet_Red2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Resources\enemyImage.png" />
+    <Content Include="Properties\Resources\EnemyImage2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\Resources\PlayerImage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
