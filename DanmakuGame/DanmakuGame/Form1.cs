@@ -749,7 +749,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };            
 
             EnemyBullet bullet3 = new EnemyBullet
@@ -758,7 +758,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };                         
 
             EnemyBullet bullet8 = new EnemyBullet
@@ -767,7 +767,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };
 
             EnemyBullet bullet10 = new EnemyBullet
@@ -776,7 +776,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };
 
             enemyBullets.Add(bullet1);
@@ -808,7 +808,7 @@ namespace DanmakuGame
                 Size = new Size(20, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 5
+                speed = 7
             };
 
             EnemyBullet bullet6 = new EnemyBullet
@@ -817,7 +817,7 @@ namespace DanmakuGame
                 Size = new Size(20, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 5
+                speed = 7
             };
 
 
@@ -842,7 +842,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };
 
             EnemyBullet bullet4 = new EnemyBullet
@@ -851,7 +851,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };
 
             EnemyBullet bullet7 = new EnemyBullet
@@ -860,7 +860,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };
 
             EnemyBullet bullet9 = new EnemyBullet
@@ -869,7 +869,7 @@ namespace DanmakuGame
                 Size = new Size(15, 15),
                 Image = Image.FromFile("Properties/Resources/Bullet_Red2.png"),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                speed = 3
+                speed = 5
             };
 
             enemyBullets2.Add(bullet2);

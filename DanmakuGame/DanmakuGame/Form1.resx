@@ -295,10 +295,13 @@
 </value>
   </data>
   <data name="pictureBox_Teki1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 64</value>
+    <value>463, 96</value>
+  </data>
+  <data name="pictureBox_Teki1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 4, 5, 4</value>
   </data>
   <data name="pictureBox_Teki1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 72</value>
+    <value>150, 108</value>
   </data>
   <data name="pictureBox_Teki1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -324,14 +327,17 @@
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 4, 5, 4</value>
+  </data>
   <data name="panel1.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1000, 1000</value>
+    <value>1667, 1500</value>
   </data>
   <data name="panel1.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1000, 1000</value>
+    <value>1667, 1500</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1000, 1000</value>
+    <value>1667, 1500</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -355,13 +361,16 @@
     <value>25</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+    <value>10, 18</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>984, 961</value>
+    <value>1640, 1266</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 4, 5, 4</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1000, 1000</value>
+    <value>1652, 1126</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>弾幕シューティング</value>
